@@ -1,0 +1,124 @@
+{
+  "testimonials": [
+    {
+      "id": 6,
+      "name": "Ahmad Wijaya",
+      "company": "PT. Maju Bersama Travel",
+      "position": "Direktur Utama",
+      "avatar": "/avatars/testimonial-6.jpg",
+      "rating": 5,
+      "service": "PPIU",
+      "content": "Proses pengurusan izin PPIU sangat cepat dan profesional. Tim selalu update perkembangan secara berkala. Sangat direkomendasikan!",
+      "date": "2024-11-15",
+      "project": "Pengurusan izin PPIU - 45 hari"
+    },
+    {
+      "id": 7,
+      "name": "Siti Rahayu",
+      "company": "CV. Rahmat Tour",
+      "position": "Owner",
+      "avatar": "/avatars/testimonial-7.jpg",
+      "rating": 5,
+      "service": "PIHK",
+      "content": "Alhamdulillah, setelah 2 tahun mencoba, akhirnya izin PIHK kami terbit berkat bantuan PT Jaminan Solusi Bisnis. Tim sangat sabar dan teliti.",
+      "date": "2024-11-10",
+      "project": "Pengajuan izin PIHK - 120 hari"
+    },
+    {
+      "id": 8,
+      "name": "Budi Santoso",
+      "company": "PT. Berkah Konstruksi",
+      "position": "Finance Manager",
+      "avatar": "/avatars/testimonial-8.jpg",
+      "rating": 5,
+      "service": "Bank Garansi",
+      "content": "Bank garansi untuk proyek kami cair dalam 10 hari. Harga kompetitif dan pelayanan memuaskan. Terima kasih tim JSB!",
+      "date": "2024-11-20",
+      "project": "Bank Garansi 10M - 10 hari"
+    },
+    {
+      "id": 9,
+      "name": "Indra Gunawan",
+      "company": "PT. Sejahtera Abadi",
+      "position": "Direktur",
+      "avatar": "/avatars/testimonial-9.jpg",
+      "rating": 5,
+      "service": "Pajak",
+      "content": "Restitusi pajak 500 Juta cair berkat bantuan tim yang sangat ahli. Dokumen diperbaiki dengan sangat rapi dan teliti.",
+      "date": "2024-11-18",
+      "project": "Restitusi PPh Badan - 7 hari"
+    },
+    {
+      "id": 10,
+      "name": "Diana Kartika",
+      "company": "PT. Nusantara Tour & Travel",
+      "position": "Operational Manager",
+      "avatar": "/avatars/testimonial-10.jpg",
+      "rating": 5,
+      "service": "IATA",
+      "content": "Proses aplikasi IATA yang rumit menjadi mudah dengan bantuan tim. Semua persyaratan dipersiapkan dengan baik.",
+      "date": "2024-11-05",
+      "project": "Keanggotaan IATA - 55 hari"
+    },
+    {
+      "id": 11,
+      "name": "Eko Prasetyo",
+      "company": "CV. Sukses Mandiri",
+      "position": "CEO",
+      "avatar": "/avatars/testimonial-11.jpg",
+      "rating": 5,
+      "service": "Laporan Keuangan",
+      "content": "Laporan keuangan perusahaan kami berantakan sebelum dibantu tim JSB. Sekarang semua rapi dan sesuai standar akuntansi.",
+      "date": "2024-10-28",
+      "project": "Jasa Pembukuan - Ongoing"
+    },
+    {
+      "id": 12,
+      "name": "Fitri Handayani",
+      "company": "PT. Anugerah Konstruksi",
+      "position:": "Project Manager",
+      "avatar": "/avatars/testimonial-12.jpg",
+      "rating": 5,
+      "service": "Administrasi Kontraktor",
+      "content": "Administrasi 5 proyek jalan tertata dengan baik berkat sistem dari tim JSB. Tracking jadi mudah dan transparan.",
+      "date": "2024-10-25",
+      "project": "Admin Proyek - 5 project"
+    },
+    {
+      "id": 13,
+      "name": "Hendra Kusuma",
+      "company": "PT. Cahaya Haji Indonesia",
+      "position": "Direktur",
+      "avatar": "/avatars/testimonial-13.jpg",
+      "rating": 5,
+      "service": "Akreditasi",
+      "content:": "Perpanjangan akreditasi ketiga kalinya berjalan lancar. Tim selalu update regulasi terbaru dari Kemenag.",
+      "date": "2024-11-12",
+      "project": "Perpanjangan Akreditasi - 40 hari"
+    },
+    {
+      "id": 14,
+      "name": "Maya Sari",
+      "company": "PT. Mandiri Jaya",
+      "position": "General Manager",
+      "avatar": "/avatars/testimonial-14.jpg",
+      "rating": 5,
+      "service": "PPIU",
+      "content": "Express PPIU 30 hari? Awalnya ragu, tapi tim JSB membuktikan bisa! Semua dokumen dipersiapkan dengan sangat baik.",
+      "date": "2024-11-22",
+      "project": "Express PPIU - 30 hari"
+    },
+    {
+      "id": 15,
+      "name": "Faisal Rahman",
+      "company": "PT. Gemilang Travel",
+      "position": "Owner",
+      "avatar": "/avatars/testimonial-15.jpg",
+      "rating": 5,
+      "service": "PPIU + PIHK",
+      "content": "Uruss PPIU dan PIHK di tempat yang sama? Hanya tim JSB yang bisa handle dengan profesional. Semua izin terbit!",
+      "date": "2024-09-15",
+      "project": "PPIU + PIHK Package - 180 hari"
+    }
+  ]
+}

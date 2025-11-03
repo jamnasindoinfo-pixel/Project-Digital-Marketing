@@ -1,0 +1,84 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-03",
+  "intents": {
+    "PPIU_SYARAT": {
+      "keywords": ["syarat ppiu", "persyaratan ppiu", "dokumen ppiu", "cara buat ppiu"],
+      "answer": "Syarat utama PPIU meliputi: 1) Badan hukum PT, 2) NIB (Nomor Induk Berusaha), 3) NPWP, 4) Akta pendirian dan perubahan, 5) Surat keterangan domisili, 6) Rekening bank atas nama perusahaan, 7) Minimal 2 SDM bersertifikat Bimbingan Ibadah Umrah, 8) SOP layanan, 9) Kantor operasional, 10) Sistem pengaduan.",
+      "benefits": [
+        "Pendampingan end-to-end hingga izin terbit",
+        "Review dokumen lengkap sebelum pengajuan",
+        "Assistensi saat verifikasi lapangan",
+        "Monitoring progres real-time"
+      ],
+      "cta_primary": "Cek kelayakan gratis via WhatsApp",
+      "cta_secondary": "Unduh checklist PPIU lengkap"
+    },
+    "PPIU_LAMA": {
+      "keywords": ["berapa lama ppiu", "proses ppiu", "waktu ppiu", "kapan selesai ppiu"],
+      "answer": "Proses normal PPIU memakan waktu 60-90 hari. Dengan pendampingan kami, proses dapat lebih cepat karena semua dokumen sudah disiapkan sesuai standar dan persyaratan Kemenag.",
+      "benefits": [
+        "Proses lebih cepat dengan dokumen lengkap",
+        "Tracking status pengajuan real-time",
+        "Minimasi revisi dokumen"
+      ],
+      "cta_primary": "Konsultasi untuk estimasi waktu",
+      "cta_secondary": "Lihat jadwal proses detail"
+    },
+    "PIHK_PERSYARATAN": {
+      "keywords": ["syarat pihk", "persyaratan pihk", "dokumen pihk", "cara buat pihk"],
+      "answer": "PIHK memiliki persyaratan lebih ketat: 1) Sudah beroperasi sebagai PPIU minimal 2 tahun, 2) Membawa minimal 100 jamaah per tahun, 3) Modal minimal 3 Miliar, 4) SDM bersertifikat Bimbingan Ibadah Haji, 5) Kerja sama dengan maskapai dan hotel di Arab Saudi, 6) Sistem informasi dan manajemen yang memadai.",
+      "benefits": [
+        "Assessment kesiapan perusahaan",
+        "Gap analysis dan improvement plan",
+        "Persiapan dokumen sesuai standar Kemenag"
+      ],
+      "cta_primary": "Cek kelayakan perusahaan Anda",
+      "cta_secondary": "Unduh persyaratan PIHK lengkap"
+    },
+    "BANK_GARANSI": {
+      "keywords": ["bank garansi", "jaminan bank", "pengajuan bank garansi", "syarat bank garansi"],
+      "answer": "Bank garansi yang tersedia: Jaminan Pelaksanaan, Jaminan Uang Muka, Jaminan Pemeliharaan, Jaminan Uang Muka Kembali, Retensi. Persyaratan umum: Akta perusahaan, NIB, NPWP, laporan keuangan, dokumen proyek, dan data direktur.",
+      "benefits": [
+        "Approval cepat (14-21 hari)",
+        "Bekerja dengan multiple bank",
+        "Competitive rates",
+        "Full assistance documentation"
+      ],
+      "cta_primary": "Ajukan bank garansi sekarang",
+      "cta_secondary": "Hitung estimasi biaya"
+    },
+    "PAJAK_KONSULTASI": {
+      "keywords": ["konsultasi pajak", "jasa pajak", "laporan pajak", "spt pajak"],
+      "answer": "Layanan pajak kami meliputi: SPT Tahunan (Badan & Orang Pribadi), SPT Masa (PPN 21/23/26), Restitusi Pajak, Tax Planning, Review & Revisi, Tax Health Check, Bantuan saat pemeriksaan pajak.",
+      "benefits": [
+        "Tax planning untuk optimalisasi beban pajak",
+        "Compliance check untuk menghindari sanksi",
+        "Support pemeriksaan pajak"
+      ],
+      "cta_primary": "Konsultasi pajak gratis",
+      "cta_secondary": "Download tax checklist"
+    },
+    "HARGA_BIAYA": {
+      "keywords": ["biaya", "harga", "berapa", "ongkos", "fee"],
+      "answer": "Biaya layanan tergantung pada jenis izin dan kompleksitas kasus Anda. Kami menawarkan paket all-in yang mencakup semua layanan hingga izin terbit. Konsultasi gratis untuk mendapatkan penawaran yang sesuai dengan kebutuhan Anda.",
+      "benefits": [
+        "Harga transparan, no hidden fee",
+        "Pembayaran bertahap sesuai milestone",
+        "Garansi uang kembali jika tidak terbit"
+      ],
+      "cta_primary": "Dapatkan penawaran harga",
+      "cta_secondary": "Lihat detail paket layanan"
+    }
+  },
+  "fallback_response": {
+    "answer": "Pertanyaan Anda akan kami jawab oleh tim ahli kami. Untuk respons lebih cepat, silakan hubungi kami langsung via WhatsApp.",
+    "benefits": [
+      "Respons cepat dari ahli berpengalaman",
+      "Solusi tepat sasaran untuk kasus Anda",
+      "Konsultasi tanpa biaya"
+    ],
+    "cta_primary": "Chat dengan ahli via WhatsApp",
+    "cta_secondary": "Jadwalkan konsultasi"
+  }
+}
