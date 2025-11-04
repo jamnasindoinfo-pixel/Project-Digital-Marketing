@@ -64,20 +64,20 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
       {/* Main Footer Content */}
       <div className="section-padding">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {/* Company Info */}
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-brand-600 to-brand-700 rounded-xl flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-xl">JSB</span>
                 </div>
                 <div>
-                  <div className="font-bold text-lg">{COMPANY_INFO.name}</div>
-                  <div className="text-xs text-gray-400">Solusi Terpercaya Sejak 2018</div>
+                  <div className="font-bold text-xl">{COMPANY_INFO.name}</div>
+                  <div className="text-sm text-gray-300 font-medium">Solusi Terpercaya Sejak 2018</div>
                 </div>
               </div>
 
@@ -212,7 +212,7 @@ export function Footer() {
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              � {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
+              © {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
             </div>
             <div className="flex gap-6">
               {footerLinks.legal.map((link) => (

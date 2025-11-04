@@ -66,7 +66,7 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
         if (href && href !== '#') {
           const element = document.querySelector(href)
           if (element) {
-            const offsetTop = element.offsetTop - 80 // Offset for sticky header
+            const offsetTop = (element as HTMLElement).offsetTop - 80 // Offset for sticky header
             window.scrollTo({
               top: offsetTop,
               behavior: 'smooth'

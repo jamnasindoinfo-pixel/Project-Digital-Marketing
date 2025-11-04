@@ -172,30 +172,7 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Floating Testimonial */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-xl max-w-xs"
-            >
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-gray-300 rounded-full" />
-                <div>
-                  <div className="font-semibold text-sm">Budi Santoso</div>
-                  <div className="text-xs text-gray-600">PT. Travel Jakarta</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-yellow-500 text-sm">★</span>
-                ))}
-              </div>
-              <p className="text-xs text-gray-700 italic">
-                "Berkas kami lengkap dalam 3 hari! Pelayanan sangat profesional."
-              </p>
             </motion.div>
-          </motion.div>
         </div>
       </div>
     </section>

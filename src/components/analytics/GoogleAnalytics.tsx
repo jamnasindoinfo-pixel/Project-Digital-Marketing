@@ -2,6 +2,12 @@
 
 import Script from 'next/script'
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void
+  }
+}
+
 export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
   if (!measurementId) return null
 

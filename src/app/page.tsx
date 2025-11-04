@@ -10,7 +10,7 @@ import { Footer } from '@/components/layout/Footer'
 import { ChatWidget } from '@/components/chat/ChatWidget'
 import { SmoothScroll } from '@/components/elements/smooth-scroll'
 import { ScrollProgress } from '@/components/elements/scroll-progress'
-import { BackToTop } from '@/components/elements/back-to-top'
+import { BackToTop } from '@/components/elements/BackToTop'
 
 export default function Home() {
   return (

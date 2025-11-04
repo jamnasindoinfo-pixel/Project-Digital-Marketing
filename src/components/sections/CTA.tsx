@@ -195,57 +195,128 @@ export function CTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="max-w-2xl mx-auto"
+          className="max-w-3xl mx-auto"
         >
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-            <h3 className="text-2xl font-bold mb-6 text-center">
-              Atau Isi Form Ini, Kami Akan Menghubungi Anda
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-brand-600 to-brand-700 rounded-full mb-4">
+                <Phone className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                Atau Isi Form Ini, Kami Akan Menghubungi Anda
+              </h3>
+              <p className="text-gray-600 text-lg">
+                Tim profesional kami siap merespons dalam 1x24 jam
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <span className="w-2 h-2 bg-brand-600 rounded-full"></span>
+                    Nama Lengkap
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="John Doe"
+                    required
+                    className="h-12 bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 rounded-xl focus:ring-4 focus:ring-brand-100 focus:border-brand-600 transition-all duration-200 text-base"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="company" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <span className="w-2 h-2 bg-brand-600 rounded-full"></span>
+                    Nama Perusahaan
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    placeholder="PT Travel Indonesia"
+                    required
+                    className="h-12 bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 rounded-xl focus:ring-4 focus:ring-brand-100 focus:border-brand-600 transition-all duration-200 text-base"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="service" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-brand-600 rounded-full"></span>
+                  Layanan yang Dibutuhkan
+                  <span className="text-red-500">*</span>
+                </label>
                 <Input
-                  name="name"
-                  value={formData.name}
+                  id="service"
+                  name="service"
+                  value={formData.service}
                   onChange={handleInputChange}
-                  placeholder="Nama Lengkap"
+                  placeholder="Contoh: PPIU, PIHK, Konsultasi Pajak, dll"
                   required
-                  className="bg-white/20 border-white/30 text-white placeholder-white/70"
-                />
-                <Input
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  placeholder="Nama Perusahaan"
-                  required
-                  className="bg-white/20 border-white/30 text-white placeholder-white/70"
+                  className="h-12 bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 rounded-xl focus:ring-4 focus:ring-brand-100 focus:border-brand-600 transition-all duration-200 text-base"
                 />
               </div>
-              <Input
-                name="service"
-                value={formData.service}
-                onChange={handleInputChange}
-                placeholder="Layanan yang Dibutuhkan"
-                required
-                className="bg-white/20 border-white/30 text-white placeholder-white/70"
-              />
-              <Input
-                name="whatsapp"
-                value={formData.whatsapp}
-                onChange={handleInputChange}
-                placeholder="Nomor WhatsApp"
-                type="tel"
-                required
-                className="bg-white/20 border-white/30 text-white placeholder-white/70"
-              />
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-white text-brand-700 hover:bg-gray-100 font-semibold"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Mengirim...' : 'Kirim Permintaan'}
-                <Phone className="w-5 h-5 ml-2" />
-              </Button>
+
+              <div className="space-y-2">
+                <label htmlFor="whatsapp" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-brand-600 rounded-full"></span>
+                  Nomor WhatsApp
+                  <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  id="whatsapp"
+                  name="whatsapp"
+                  value={formData.whatsapp}
+                  onChange={handleInputChange}
+                  placeholder="08xx-xxxx-xxxx"
+                  type="tel"
+                  required
+                  className="h-12 bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 rounded-xl focus:ring-4 focus:ring-brand-100 focus:border-brand-600 transition-all duration-200 text-base"
+                />
+              </div>
+
+              <div className="pt-4">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full h-14 bg-gradient-to-r from-brand-600 to-brand-700 text-white hover:from-brand-700 hover:to-brand-800 font-bold text-base rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Mengirim...
+                    </>
+                  ) : (
+                    <>
+                      <span>Kirim Permintaan Konsultasi</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-6 text-sm text-gray-500 pt-4">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Gratis</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-blue-500" />
+                  <span>Respon 1x24 jam</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-yellow-500" />
+                  <span>Proses cepat</span>
+                </div>
+              </div>
             </form>
           </div>
         </motion.div>

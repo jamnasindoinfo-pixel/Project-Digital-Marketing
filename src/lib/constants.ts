@@ -142,27 +142,29 @@ export const SERVICES = {
 
 export const NAVIGATION = {
   main: [
+    { title: 'Layanan', href: '/services' },
     {
       title: 'Layanan Travel',
       href: '#services',
       children: [
-        { title: 'PPIU', href: '#ppiu' },
-        { title: 'PIHK', href: '#pihk' },
-        { title: 'Akreditasi', href: '#akreditasi' },
-        { title: 'IATA', href: '#iata' }
+        { title: 'PPIU', href: '/services/ppiu', description: 'Izin Penyelenggara Perjalanan Ibadah Umrah' },
+        { title: 'PIHK', href: '/services/pihk', description: 'Izin Penyelenggara Ibadah Haji Khusus' },
+        { title: 'Akreditasi', href: '/services/akreditasi', description: 'Akreditasi PPIU & PIHK' },
+        { title: 'IATA', href: '/services/iata', description: 'Keanggotaan IATA' }
       ]
     },
     {
-      title: 'Layanan Bisnis',
+      title: 'Layanan Administrasi',
       href: '#services',
       children: [
-        { title: 'Pajak', href: '#pajak' },
-        { title: 'Bank Garansi', href: '#bank-garansi' },
-        { title: 'Laporan Keuangan', href: '#laporan-keuangan' },
-        { title: 'Administrasi Kontraktor', href: '#kontraktor' }
+        { title: 'Pajak', href: '/services/pajak', description: 'Konsultasi & Pengurusan Pajak' },
+        { title: 'Bank Garansi', href: '/services/bank-garansi', description: 'Pengajuan Bank Garansi' },
+        { title: 'Laporan Keuangan', href: '/services/laporan-keuangan', description: 'Pembukuan & Laporan Keuangan' },
+        { title: 'Administrasi Kontraktor', href: '/services/kontraktor', description: 'Administrasi Proyek' }
       ]
     },
-    { title: 'Portfolio', href: '#portfolio' },
+    { title: 'Portfolio', href: '/portfolio' },
+    { title: 'Blog', href: '/blog' },
     { title: 'Testimoni', href: '#testimonials' },
     { title: 'FAQ', href: '#faq' },
     { title: 'Kontak', href: '#cta' }

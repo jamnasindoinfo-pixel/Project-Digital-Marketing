@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { geminiService } from '@/lib/gemini'
 import fs from 'fs'
 import path from 'path'
 
@@ -7,7 +8,7 @@ const rateLimitMap = new Map()
 const RATE_LIMIT = 10 // requests per minute
 const WINDOW_MS = 60 * 1000 // 1 minute
 
-// Load FAQ data
+// Load FAQ data as fallback
 let faqData: any = null
 try {
   const faqPath = path.join(process.cwd(), 'data', 'faq.json')
@@ -17,7 +18,7 @@ try {
   console.error('Failed to load FAQ data:', error)
 }
 
-// Simple intent classifier
+// Simple intent classifier as fallback
 function classifyIntent(message: string): { intent: string; confidence: number } {
   const lowerMessage = message.toLowerCase()
 
@@ -41,8 +42,8 @@ function classifyIntent(message: string): { intent: string; confidence: number }
   return { intent: 'unknown', confidence: 0 }
 }
 
-// Generate response based on intent
-function generateResponse(intent: string, confidence: number): any {
+// Generate response based on intent (fallback)
+function generateFallbackResponse(intent: string, confidence: number): any {
   if (!faqData) {
     return faqData.fallback_response
   }
@@ -62,7 +63,8 @@ function checkRateLimit(ip: string): boolean {
   const windowStart = now - WINDOW_MS
 
   // Clean old entries
-  for (const [key, value] of rateLimitMap.entries()) {
+  const entries = Array.from(rateLimitMap.entries())
+  for (const [key, value] of entries) {
     if (value.timestamp < windowStart) {
       rateLimitMap.delete(key)
     }
@@ -87,7 +89,9 @@ function checkRateLimit(ip: string): boolean {
 export async function POST(req: NextRequest) {
   try {
     // Rate limiting
-    const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown'
+    const ip = req.headers.get('x-forwarded-for') ||
+               req.headers.get('x-real-ip') ||
+               'unknown'
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
@@ -96,7 +100,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json()
-    const { messages, session_id } = body
+    const { messages, session_id, user_action, admin_takeover } = body
 
     // Get the last user message
     const userMessage = messages?.filter((m: any) => m.role === 'user').pop()?.content || ''
@@ -105,45 +109,99 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No message provided' }, { status: 400 })
     }
 
-    // Classify intent
-    const { intent, confidence } = classifyIntent(userMessage)
-    console.log(`Intent detected: ${intent} with confidence: ${confidence}`)
+    // Try Gemini AI first, fallback to keyword matching if it fails
+    let responseData
+    try {
+      const chatHistory = messages || []
+      responseData = await geminiService.generateResponse(userMessage, chatHistory)
+      console.log('✅ Gemini AI response successful')
+    } catch (geminiError) {
+      console.error('❌ Gemini AI failed, using fallback:', geminiError)
 
-    // Get response
-    const responseData = generateResponse(intent, confidence)
+      // Fallback to keyword matching
+      const { intent, confidence } = classifyIntent(userMessage)
+      const fallbackData = generateFallbackResponse(intent, confidence)
 
-    // Add CTA links
+      responseData = {
+        answer: fallbackData.answer,
+        benefits: fallbackData.benefits || [],
+        cta_primary: fallbackData.cta_primary,
+        cta_secondary: fallbackData.cta_secondary,
+        confidence: confidence,
+        intent: intent
+      }
+
+      console.log(`🔄 Using fallback response - Intent: ${intent}, Confidence: ${confidence}`)
+    }
+
+    // Add WhatsApp links for CTAs
     const whatsappNumber = process.env.WA_BUSINESS_NUMBER || '628123456789'
+    let ctaLinks = {}
+
     if (responseData.cta_primary) {
-      responseData.cta.primary = {
-        text: responseData.cta_primary,
-        link: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          `Halo, saya tertarik dengan informasi tentang ${intent.replace('_', ' ')}`
-        )}`
+      ctaLinks = {
+        ...ctaLinks,
+        primary: {
+          text: responseData.cta_primary,
+          link: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+            `Halo, saya tertarik dengan informasi tentang ${responseData.intent || 'layanan'}`
+          )}`
+        }
       }
     }
 
     if (responseData.cta_secondary) {
-      responseData.cta.secondary = {
-        text: responseData.cta_secondary,
-        link: responseData.cta_secondary.includes('#')
-          ? responseData.cta_secondary
-          : '#services'
+      ctaLinks = {
+        ...ctaLinks,
+        secondary: {
+          text: responseData.cta_secondary,
+          link: responseData.cta_secondary.includes('#')
+            ? responseData.cta_secondary
+            : '#services'
+        }
       }
     }
 
-    // Log interaction (for analytics)
-    console.log(`Chat interaction: ${intent} - ${userMessage.substring(0, 50)}...`)
+    // Log interaction
+    console.log(`Chat interaction: ${responseData.intent} - ${userMessage.substring(0, 50)}...`)
+
+    // Handle admin intervention logic
+    let adminInfo = null
+    let whatsappTimeout = null
+
+    if (user_action === 'request_admin') {
+      // User requested admin intervention
+      adminInfo = {
+        status: 'admin-requested',
+        requestTime: new Date().toISOString(),
+        timeoutMinutes: 15
+      }
+
+      whatsappTimeout = {
+        enabled: true,
+        timeoutMinutes: 15,
+        fallbackMessage: 'Admin sedang offline. Silakan hubungi kami via WhatsApp untuk bantuan segera.'
+      }
+
+      console.log(`👨‍💼 Admin requested for session ${session_id}`)
+    } else if (admin_takeover) {
+      // Admin took over the chat
+      adminInfo = {
+        status: 'admin-active',
+        takeoverTime: new Date().toISOString()
+      }
+
+      console.log(`✅ Admin took over session ${session_id}`)
+    }
 
     return NextResponse.json({
       answer: responseData.answer,
-      benefits: responseData.benefits || [],
-      cta: {
-        primary: responseData.cta_primary || null,
-        secondary: responseData.cta_secondary || null
-      },
-      confidence: confidence,
-      intent: intent
+      benefits: responseData.benefits,
+      cta: ctaLinks,
+      confidence: responseData.confidence,
+      intent: responseData.intent,
+      admin_intervention: adminInfo,
+      whatsapp_timeout: whatsappTimeout
     })
 
   } catch (error) {
@@ -171,7 +229,9 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'healthy',
-    faq_loaded: !!faqData,
+    gemini_enabled: !!process.env.GEMINI_API_KEY,
+    fallback_enabled: !!faqData,
+    api_version: '2.0.0',
     intents_count: faqData ? Object.keys(faqData.intents).length : 0
   })
 }
