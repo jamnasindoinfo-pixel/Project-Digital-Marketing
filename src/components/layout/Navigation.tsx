@@ -10,7 +10,6 @@ import {
   ChevronDown,
   Phone,
   Plane,
-  Briefcase,
   ChevronRight
 } from 'lucide-react'
 import { COMPANY_INFO, NAVIGATION, CONTACT_INFO } from '@/lib/constants'
@@ -58,21 +57,7 @@ export function Navigation() {
       : 'bg-white/90 backdrop-blur-md py-4 border-gray-100/50'
   )
 
-  const dropdownContent = {
-    travel: [
-      { title: 'PPIU', href: '#ppiu', description: 'Izin Penyelenggara Perjalanan Ibadah Umrah' },
-      { title: 'PIHK', href: '#pihk', description: 'Izin Penyelenggara Ibadah Haji Khusus' },
-      { title: 'Akreditasi', href: '#akreditasi', description: 'Akreditasi PPIU & PIHK' },
-      { title: 'IATA', href: '#iata', description: 'Keanggotaan IATA' }
-    ],
-    business: [
-      { title: 'Pajak', href: '#pajak', description: 'Konsultasi & Pengurusan Pajak' },
-      { title: 'Bank Garansi', href: '#bank-garansi', description: 'Pengajuan Bank Garansi' },
-      { title: 'Laporan Keuangan', href: '#laporan-keuangan', description: 'Pembukuan & Laporan Keuangan' },
-      { title: 'Administrasi Kontraktor', href: '#kontraktor', description: 'Administrasi Proyek' }
-    ]
-  }
-
+  
   return (
     <>
       <nav className={navClasses}>
@@ -182,86 +167,55 @@ export function Navigation() {
               <div className="space-y-4">
                 {/* Mobile Menu Items */}
                 <div className="space-y-2">
-                  {/* Travel Services */}
-                  <div>
-                    <button
-                      className="flex items-center justify-between w-full p-3 text-left hover:bg-gray-50 rounded-lg"
-                      onClick={() => setActiveDropdown(activeDropdown === 'mobile-travel' ? null : 'mobile-travel')}
-                    >
-                      <div className="flex items-center gap-2">
-                        <Plane className="w-4 h-4 text-brand-600" />
-                        <span className="font-medium">Layanan Travel</span>
-                      </div>
-                      <ChevronDown className={cn(
-                        "w-4 h-4 transition-transform",
-                        activeDropdown === 'mobile-travel' && "rotate-180"
-                      )} />
-                    </button>
-                    {activeDropdown === 'mobile-travel' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        className="pl-10 pr-3 space-y-1"
-                      >
-                        {dropdownContent.travel.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block p-2 text-sm text-gray-600 hover:text-brand-600"
-                            onClick={() => setIsOpen(false)}
+                  {NAVIGATION.main.map((item) => (
+                    <div key={item.title}>
+                      {item.children ? (
+                        // Mobile Dropdown Menu
+                        <div>
+                          <button
+                            className="flex items-center justify-between w-full p-3 text-left hover:bg-gray-50 rounded-lg"
+                            onClick={() => setActiveDropdown(activeDropdown === `mobile-${item.title}` ? null : `mobile-${item.title}`)}
                           >
-                            {item.title}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Business Services */}
-                  <div>
-                    <button
-                      className="flex items-center justify-between w-full p-3 text-left hover:bg-gray-50 rounded-lg"
-                      onClick={() => setActiveDropdown(activeDropdown === 'mobile-business' ? null : 'mobile-business')}
-                    >
-                      <div className="flex items-center gap-2">
-                        <Briefcase className="w-4 h-4 text-brand-600" />
-                        <span className="font-medium">Layanan Administrasi</span>
-                      </div>
-                      <ChevronDown className={cn(
-                        "w-4 h-4 transition-transform",
-                        activeDropdown === 'mobile-business' && "rotate-180"
-                      )} />
-                    </button>
-                    {activeDropdown === 'mobile-business' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        className="pl-10 pr-3 space-y-1"
-                      >
-                        {dropdownContent.business.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block p-2 text-sm text-gray-600 hover:text-brand-600"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {item.title}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Regular Links */}
-                  {NAVIGATION.main.slice(2).map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block p-3 hover:bg-gray-50 rounded-lg font-medium"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.title}
-                    </Link>
+                            <div className="flex items-center gap-2">
+                              <Plane className="w-4 h-4 text-brand-600" />
+                              <span className="font-medium">{item.title}</span>
+                            </div>
+                            <ChevronDown className={cn(
+                              "w-4 h-4 transition-transform",
+                              activeDropdown === `mobile-${item.title}` && "rotate-180"
+                            )} />
+                          </button>
+                          {activeDropdown === `mobile-${item.title}` && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              className="pl-10 pr-3 space-y-1"
+                            >
+                              {item.children.map((subItem) => (
+                                <Link
+                                  key={subItem.href}
+                                  href={subItem.href}
+                                  className="block p-2 text-sm text-gray-600 hover:text-brand-600"
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  {subItem.title}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </div>
+                      ) : (
+                        // Regular Link
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block p-3 hover:bg-gray-50 rounded-lg font-medium"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {item.title}
+                        </Link>
+                      )}
+                    </div>
                   ))}
                 </div>
 

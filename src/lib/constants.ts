@@ -142,29 +142,23 @@ export const SERVICES = {
 
 export const NAVIGATION = {
   main: [
-    { title: 'Layanan', href: '/services' },
+    { title: 'Home', href: '/' },
     {
-      title: 'Layanan Travel',
-      href: '#services',
+      title: 'Layanan',
+      href: '/services',
       children: [
         { title: 'PPIU', href: '/services/ppiu', description: 'Izin Penyelenggara Perjalanan Ibadah Umrah' },
         { title: 'PIHK', href: '/services/pihk', description: 'Izin Penyelenggara Ibadah Haji Khusus' },
         { title: 'Akreditasi', href: '/services/akreditasi', description: 'Akreditasi PPIU & PIHK' },
-        { title: 'IATA', href: '/services/iata', description: 'Keanggotaan IATA' }
-      ]
-    },
-    {
-      title: 'Layanan Administrasi',
-      href: '#services',
-      children: [
+        { title: 'IATA', href: '/services/iata', description: 'Keanggotaan IATA' },
         { title: 'Pajak', href: '/services/pajak', description: 'Konsultasi & Pengurusan Pajak' },
         { title: 'Bank Garansi', href: '/services/bank-garansi', description: 'Pengajuan Bank Garansi' },
         { title: 'Laporan Keuangan', href: '/services/laporan-keuangan', description: 'Pembukuan & Laporan Keuangan' },
         { title: 'Administrasi Kontraktor', href: '/services/kontraktor', description: 'Administrasi Proyek' }
       ]
     },
-    { title: 'Portfolio', href: '/portfolio' },
     { title: 'Blog', href: '/blog' },
+    { title: 'Portofolio', href: '/portfolio' },
     { title: 'Testimoni', href: '#testimonials' },
     { title: 'FAQ', href: '#faq' },
     { title: 'Kontak', href: '#cta' }
