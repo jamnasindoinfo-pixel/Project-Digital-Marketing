@@ -10,7 +10,16 @@ import {
   ChevronDown,
   Phone,
   Plane,
-  ChevronRight
+  ChevronRight,
+  ArrowRight,
+  Star,
+  Clock,
+  Shield,
+  Award,
+  FileText,
+  Building,
+  Calculator,
+  HardHat
 } from 'lucide-react'
 import { COMPANY_INFO, NAVIGATION, CONTACT_INFO } from '@/lib/constants'
 import { cn } from '@/lib/utils'
@@ -19,6 +28,21 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+
+  // Get icon for service
+  const getServiceIcon = (title: string) => {
+    const icons: { [key: string]: any } = {
+      'PPIU': Plane,
+      'PIHK': Star,
+      'Akreditasi': Award,
+      'IATA': Shield,
+      'Pajak': Calculator,
+      'Bank Garansi': Building,
+      'Laporan Keuangan': FileText,
+      'Administrasi Kontraktor': HardHat
+    }
+    return icons[title] || ChevronRight
+  }
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
@@ -93,29 +117,60 @@ export function Navigation() {
                       <AnimatePresence>
                         {activeDropdown === item.title && (
                           <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-3 w-80 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-50"
+                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                            className="dropdown-centered absolute top-full mt-3 w-96 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 overflow-hidden z-50"
                           >
-                            <div className="p-2">
-                              {item.children.map((subItem) => (
+                            {/* Header */}
+                            <div className="bg-gradient-to-r from-brand-600 to-brand-700 px-6 py-4">
+                              <h3 className="text-white font-semibold text-lg">Layanan Kami</h3>
+                              <p className="text-brand-100 text-sm">Solusi lengkap untuk bisnis Anda</p>
+                            </div>
+
+                            {/* Services Grid */}
+                            <div className="p-4">
+                              <div className="grid grid-cols-2 gap-2">
+                                {item.children.map((subItem, index) => {
+                                  const Icon = getServiceIcon(subItem.title)
+                                  return (
+                                    <Link
+                                      key={subItem.href}
+                                      href={subItem.href}
+                                      className="service-item-hover group flex items-start gap-3 p-3 rounded-xl hover:bg-brand-50 transition-all duration-200"
+                                      onClick={() => setActiveDropdown(null)}
+                                    >
+                                      <div className="w-10 h-10 bg-gradient-to-br from-brand-500 to-brand-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:shadow-lg transition-shadow">
+                                        <Icon className="w-5 h-5 text-white" />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <div className="font-semibold text-gray-900 text-sm group-hover:text-brand-600 transition-colors">
+                                          {subItem.title}
+                                        </div>
+                                        {subItem.description && (
+                                          <div className="text-xs text-gray-600 mt-1 line-clamp-2">
+                                            {subItem.description}
+                                          </div>
+                                        )}
+                                      </div>
+                                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-brand-600 transition-all duration-200 group-hover:translate-x-1" />
+                                    </Link>
+                                  )
+                                })}
+                              </div>
+
+                              {/* Footer CTA */}
+                              <div className="mt-4 pt-4 border-t border-gray-200">
                                 <Link
-                                  key={subItem.href}
-                                  href={subItem.href}
-                                  className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                                  href="/services"
+                                  className="flex items-center justify-center gap-2 text-brand-600 font-medium text-sm hover:text-brand-700 transition-colors"
                                   onClick={() => setActiveDropdown(null)}
                                 >
-                                  <ChevronRight className="w-4 h-4 text-brand-600 mt-0.5 flex-shrink-0" />
-                                  <div>
-                                    <div className="font-medium text-gray-900">{subItem.title}</div>
-                                    {subItem.description && (
-                                      <div className="text-sm text-gray-600">{subItem.description}</div>
-                                    )}
-                                  </div>
+                                  Lihat Semua Layanan
+                                  <ArrowRight className="w-4 h-4" />
                                 </Link>
-                              ))}
+                              </div>
                             </div>
                           </motion.div>
                         )}
@@ -189,18 +244,34 @@ export function Navigation() {
                             <motion.div
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
-                              className="pl-10 pr-3 space-y-1"
+                              className="pl-4 pr-3 space-y-2"
                             >
-                              {item.children.map((subItem) => (
-                                <Link
-                                  key={subItem.href}
-                                  href={subItem.href}
-                                  className="block p-2 text-sm text-gray-600 hover:text-brand-600"
-                                  onClick={() => setIsOpen(false)}
-                                >
-                                  {subItem.title}
-                                </Link>
-                              ))}
+                              {item.children.map((subItem) => {
+                                const Icon = getServiceIcon(subItem.title)
+                                return (
+                                  <Link
+                                    key={subItem.href}
+                                    href={subItem.href}
+                                    className="mobile-dropdown-item flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-brand-50 transition-all duration-200 group"
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    <div className="w-8 h-8 bg-gradient-to-br from-brand-500 to-brand-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                      <Icon className="w-4 h-4 text-white" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="font-medium text-gray-900 text-sm group-hover:text-brand-600 transition-colors">
+                                        {subItem.title}
+                                      </div>
+                                      {subItem.description && (
+                                        <div className="text-xs text-gray-600 mt-0.5">
+                                          {subItem.description}
+                                        </div>
+                                      )}
+                                    </div>
+                                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-brand-600 transition-colors" />
+                                  </Link>
+                                )
+                              })}
                             </motion.div>
                           )}
                         </div>
