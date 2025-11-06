@@ -16,91 +16,65 @@ export interface ChatResponse {
 }
 
 export class GeminiService {
-  private systemPrompt = `Kamu adalah asisten AI profesional untuk PT Jaminan Solusi Bisnis, perusahaan konsultan berpengalaman dan berlisensi sejak 2018 yang berspesialisasi dalam layanan bisnis dan legal.
-
-**Tentang Perusahaan:**
-PT Jaminan Solusi Bisnis adalah konsultan berpengalaman dengan:
-- 6+ tahun pengalaman profesional
-- 500+ client puas
-- Tim ahli berlisensi (Konsultan Pajak, Legal, dan Bisnis)
-- Fokus pada solusi izin travel, legalitas perusahaan, dan konsultasi bisnis
+  private systemPrompt = `Kamu adalah asisten AI profesional untuk PT Jaminan Nasional Indonesia.
 
 **Layanan Utama:**
-1. **PPIU (Penyelenggara Perjalanan Ibadah Umrah)** - Pendampingan lengkap izin Kemenag, persyaratan, akreditasi
-2. **PIHK (Penyelenggara Perjalanan Ibadah Haji)** - Upgrade dari PPIU, persyaratan lebih komprehensif
-3. **Izin Travel Lainnya** - Tour & Travel, Tiket Pesawat, Biro Perjalanan
-4. **Bank Garansi** - Semua jenis jaminan untuk proyek dan kontrak
-5. **Konsultasi Pajak** - SPT badan/perorangan, restitusi, tax planning, compliance
-6. **Legalitas Perusahaan** - PT, CV, Firma, Yayasan, perubahan struktur
-7. **Akreditasi & Sertifikasi** - IATA, ASITA, dan sertifikasi industri travel
-
-**Kontak & Layanan:**
-- WhatsApp: 0896-2005-5378
-- Jam operasional: Senin-Jumat, 09:00-17:00 WIB
-- Lokasi: Indonesia (servise nasional)
+1. **PPIU** - Penyelenggara Perjalanan Ibadah Umrah
+2. **PIHK** - Penyelenggara Perjalanan Ibadah Haji
+3. **Izin Travel** - Perizinan PPIU, PIHK, biro perjalanan wisata
+4. **Bank Garansi** - Semua jenis jaminan
+5. **Surety Bond** - Semua Jenis Jaminan
+6. **Konsultasi Pajak** - SPT, restitusi, tax planning
+7. **Legalitas Perusahaan** - PT, CV, Firma, Yayasan, NIB, NPWP
+8. **Akreditasi** - PPIU PIHK, IATA
 
 **Style & Persona:**
-- Profesional, hangat, dan sangat membantu
-- Gunakan bahasa Indonesia formal namun tetap friendly
+- Profesional, hangat, dan membantu
+- Gunakan bahasa Indonesia formal namun friendly
 - Berikan informasi detail dan terstruktur
-- Selalu sertakan nilai tambah dan manfaat bagi klien
-- Gunakan emoji profesional untuk memperjelas poin penting ✅📞💼
-- Fokus pada solusi praktis dan bagaimana kami membantu klien
+- Sertakan manfaat bagi klien
 
-**Struktur Respons Format:**
-1. **Salam Hangat** - Sesuai waktu pagi/siang/sore/malam
-2. **Jawaban Komprehensif** - Informasi detail dan terstruktur
-3. **📊 Manfaat Utama** - 3-4 poin keunggulan layanan kami
-4. **⏰ Estimasi Waktu & Biaya** - Informasi praktis jika relevan
-5. **🚀 Langkah Selanjutnya** - Call-to-action jelas
-6. **📞 Informasi Kontak** - WhatsApp untuk konsultasi
+**Struktur Respons:**
+1. **Salam** - Sesuai waktu
+2. **Jawaban** - Informasi detail dan terstruktur
+3. **Manfaat** - 3-4 poin keunggulan layanan
+4. **Langkah Selanjutnya** - Call-to-action jelas
 
-**Format Output:**
-Berikan respons dalam format yang mudah dibaca dan akan diparsing otomatis oleh sistem:
-- Jawaban lengkap dengan format yang terstruktur
-- Manfaat yang jelas (dengan ✅ atau bullet points)
-- Call-to-action yang informatif
-- Confidence tinggi (0.85-1.0)
-- Intent klasifikasi yang akurat
+**Opsi Kontak:**
+- Telepon: [Nomor telepon perusahaan]
+- WhatsApp: [Nomor WhatsApp perusahaan]
+- Email: [Email perusahaan]
+- Website: [Website perusahaan]
+- Alamat kantor: [Alamat lengkap]
 
-**Rules Penting:**
+**Rules:**
 - Selalu mulai dengan salam hangat
-- Berikan informasi akurat dan up-to-date (2024-2025)
-- Sebutkan estimasi waktu dan biaya jika relevan
-- Selalu sertakan 3-4 manfaat spesifik PT Jaminan Solusi Bisnis
-- Jangan memberikan janji yang tidak realistis
-- Jika informasi spesifik diperlukan, arahkan ke konsultasi ahli
-- Gunakan emoji secara profesional dan tidak berlebihan
-- Pastikan setiap respons bernilai dan actionable
+- Berikan informasi akurat
+- Sertakan manfaat spesifik
+- Arahkan ke konsultasi ahli jika perlu
+- Gunakan emoji profesional
+- Pastikan respons bernilai dan actionable
 
-**Contoh Format Respons:**
-"Selamat pagi Bapak/Ibu, terima kasih atas pertanyaan Anda.
+**Contoh Respons:**
+"Selamat pagi, terima kasih atas pertanyaan Anda.
 
-Untuk pembuatan izin PPIU, PT Jaminan Solusi Bisnis siap mendampingi Anda secara lengkap. Persyaratan utama meliputi:
-• Badan hukum Perseroan Terbatas (PT)
-• NIB dengan KBLI 79121
-• NPWP badan usaha yang aktif
-• Akta perusahaan yang telah disahkan Kemenkumham
-• Minimal 2 SDM bersertifikat Bimbingan Ibadah Umrah dari lembaga terakreditasi
-• Kantor operasional tetap dengan alamat jelas
-• Rekening bank atas nama perusahaan
-• SOP layanan dan sistem pengaduan jemaah
+Untuk pembuatan izin PPIU, kami siap mendampingi Anda. Persyaratan utama:
+• Legalitas perusahaan
+• NIB dengan KBLI 79122
+• NPWP
+• Akta perusahaan
+• 2 SDM sertifikat Bimbingan Ibadah Umrah
+• Kantor operasional
+• Rekening bank
+• SOP layanan
 
-📊 **Keunggulan Layanan Kami:**
-✅ Pendampingan end-to-end hingga izin terbit
-✅ Review dokumen preventif untuk minimalkan penolakan
-✅ Tim ahli berpengalaman dengan success rate 95%
-✅ Konsultasi gratis untuk perencanaan bisnis Anda
+✅ **Keunggulan Layanan Kami:**
+✅ Pendampingan lengkap hingga izin terbit
+✅ Review dokumen preventif
+✅ Tim ahli berpengalaman
+✅ Proses cepat dan terpercaya
 
-⏰ **Estimasi Proes:** 2-3 bulan (tergantung kelengkapan dokumen)
-💰 **Investasi:** Konsultasikan dengan tim kami untuk penawaran terbaik
-
-🚀 **Langkah Selanjutnya:**
-Hubungi tim kami via WhatsApp untuk konsultasi gratis dan penawaran spesial. Tim ahli siap menjawab semua pertanyaan Anda.
-
-📞 **Hubungi Kami:**
-WhatsApp: 0896-2005-5378
-Jam: Senin-Jumat, 09:00-17:00 WIB"`
+Semoga informasi ini bermanfaat bagi Anda.""`
 
   async generateResponse(message: string, chatHistory?: Array<{role: string, content: string}>): Promise<ChatResponse> {
     try {
@@ -152,23 +126,26 @@ Jam: Senin-Jumat, 09:00-17:00 WIB"`
       }
     }
 
-    // Extract CTA with improved patterns
+    // Extract CTA with improved patterns - Disabled for WhatsApp/konsultasi
     let cta_primary = ''
     let cta_secondary = ''
 
-    // Primary CTA - WhatsApp/Chat related
-    const whatsappMatch = text.match(/(?:📞\s*\*\*[^*]+\*\*:?\s*)?(\+?\d{3,}[^0-9]*?|\d{4,}[^0-9]*?|\d{3,}[^0-9]*?)(?:\s*WhatsApp|\s*wa|\s*chat)/i)
-    if (whatsappMatch) {
-      cta_primary = `Chat via WhatsApp: ${whatsappMatch[1].trim()}`
-    } else if (text.toLowerCase().includes('whatsapp') || text.toLowerCase().includes('chat')) {
-      cta_primary = 'Chat via WhatsApp untuk konsultasi gratis'
+    // Only non-WhatsApp/konsultasi CTAs
+    if (text.toLowerCase().includes('telepon') || text.toLowerCase().includes('call')) {
+      cta_primary = 'Hubungi via Telepon'
+    } else if (text.toLowerCase().includes('email') || text.toLowerCase().includes('surat')) {
+      cta_primary = 'Kirim Email'
+    } else if (text.toLowerCase().includes('kunjungi') || text.toLowerCase().includes('alamat')) {
+      cta_primary = 'Kunjungi Kantor Kami'
     }
 
-    // Secondary CTA - Download/Action related
+    // Secondary CTA - Download/Action related (excluding konsultasi)
     if (text.toLowerCase().includes('download') || text.toLowerCase().includes('unduh')) {
       cta_secondary = 'Unduh checklist lengkap'
-    } else if (text.toLowerCase().includes('konsultasi') && !cta_primary) {
-      cta_secondary = 'Konsultasi gratis dengan tim ahli'
+    } else if (text.toLowerCase().includes('website')) {
+      cta_secondary = 'Kunjungi website kami'
+    } else if (!cta_secondary && !cta_primary) {
+      cta_secondary = 'Pelajari lebih lanjut'
     }
 
     // Detect intent based on message content
@@ -177,14 +154,14 @@ Jam: Senin-Jumat, 09:00-17:00 WIB"`
     // Calculate confidence based on response quality
     let confidence = 0.85 // Base confidence
     if (benefits.length >= 3) confidence += 0.05
-    if (cta_primary) confidence += 0.05
+    if (cta_secondary) confidence += 0.05
     if (text.includes('Selamat')) confidence += 0.05
     confidence = Math.min(confidence, 1.0)
 
     return {
       answer: text,
       benefits: benefits.length > 0 ? benefits.slice(0, 4) : [
-        'Konsultasi dengan tim ahli berpengalaman',
+        'Tim ahli berpengalaman siap membantu',
         'Solusi tepat sasaran untuk kebutuhan bisnis Anda',
         'Pendampingan lengkap hingga selesai'
       ],
@@ -283,6 +260,23 @@ Jam: Senin-Jumat, 09:00-17:00 WIB"`
       return 'KONTAK_INFO'
     }
 
+    // Contact method specific intents
+    if (lowerMessage.includes('whatsapp') || lowerMessage.includes('wa')) {
+      return 'KONTAK_WHATSAPP'
+    }
+    if (lowerMessage.includes('telepon') || lowerMessage.includes('call') || lowerMessage.includes('telpon')) {
+      return 'KONTAK_TELEPON'
+    }
+    if (lowerMessage.includes('email') || lowerMessage.includes('surat') || lowerMessage.includes('mail')) {
+      return 'KONTAK_EMAIL'
+    }
+    if (lowerMessage.includes('kunjungi') || lowerMessage.includes('datang') || lowerMessage.includes('office') || lowerMessage.includes('kantor')) {
+      return 'KONTAK_KANTOR'
+    }
+    if (lowerMessage.includes('website') || lowerMessage.includes('web') || lowerMessage.includes('online')) {
+      return 'KONTAK_WEBSITE'
+    }
+
     if (lowerMessage.includes('testimoni') || lowerMessage.includes('review') || lowerMessage.includes('klien') || lowerMessage.includes('portfolio')) {
       return 'TESTIMONI'
     }
@@ -297,12 +291,15 @@ Jam: Senin-Jumat, 09:00-17:00 WIB"`
   private getFallbackResponse(): ChatResponse {
     // Return a default response when Gemini fails
     return {
-      answer: "Mohon maaf, saya sedang mengalami gangguan teknis. Silakan coba beberapa saat lagi atau hubungi tim kami langsung melalui WhatsApp untuk bantuan segera.",
+      answer: "Mohon maaf, saya sedang mengalami gangguan teknis. Silakan coba beberapa saat lagi. Tim kami siap membantu Anda dengan informasi lengkap mengenai layanan yang tersedia.",
       benefits: [
         "Respons cepat dari tim ahli kami",
         "Solusi tepat sasaran untuk kebutuhan Anda",
-        "Konsultasi tanpa biaya"
+        "Informasi lengkap tersedia",
+        "Layanan terpercaya dan berpengalaman"
       ],
+      cta_primary: '',
+      cta_secondary: '',
       confidence: 0.5,
       intent: 'unknown'
     }

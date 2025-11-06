@@ -7,7 +7,7 @@ import { BlogCategories } from '@/components/blog/BlogCategories'
 import { ConsultationButton } from '@/components/blog/ConsultationButton'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
+import { Search, Star } from 'lucide-react'
 import { Suspense } from 'react'
 
 interface BlogPageProps {
@@ -91,22 +91,61 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-brand-600 to-blue-600 text-white">
-        <div className="container-custom">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Blog Travel Indonesia
+      <section className="section-padding bg-gradient-to-br from-jni-600 via-jni-700 to-jni-800 text-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+
+        <div className="container-custom relative">
+          <div className="text-center max-w-5xl mx-auto py-12 md:py-16">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-blue-100 mb-6">
+              <Star className="w-4 h-4" />
+              <span>Blog Travel & Bisnis Terpercaya</span>
+            </div>
+
+            {/* Main Title */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              Blog <span className="text-transparent bg-clip-text bg-gradient-to-r from-jni-100 to-white">Travel Indonesia</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Tips, Panduan, dan Informasi Perjalanan Terpercaya
+
+            {/* Subtitle */}
+            <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-jni-100 max-w-3xl mx-auto leading-relaxed font-light">
+              Tips, Panduan, dan Informasi Perjalanan Terpercaya untuk Perjalanan Spiritual dan Bisnis Anda
             </p>
 
             {/* Search Bar */}
-            <Suspense fallback={<div className="h-12 bg-white/20 rounded-lg animate-pulse" />}>
-              <BlogSearch />
-            </Suspense>
+            <div className="max-w-2xl mx-auto">
+              <Suspense fallback={
+                <div className="h-16 bg-white/20 backdrop-blur-sm rounded-2xl animate-pulse shadow-2xl"></div>
+              }>
+                <BlogSearch />
+              </Suspense>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">500+</div>
+                <div className="text-jni-100 text-sm md:text-base">Artikel Bermanfaat</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">50K+</div>
+                <div className="text-jni-100 text-sm md:text-base">Pembaca Setia</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">6+</div>
+                <div className="text-jni-100 text-sm md:text-base">Tahun Pengalaman</div>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Bottom Gradient Fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-50 to-transparent"></div>
       </section>
 
       {/* Categories Filter */}
@@ -167,12 +206,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       </section>
 
       {/* Call to Action */}
-      <section className="section-padding bg-gradient-to-r from-brand-600 to-blue-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-jni-600 to-jni-700 text-white">
         <div className="container-custom text-center">
           <h2 className="text-3xl font-bold mb-4">
             Butuh Bantuan Perjalanan Anda?
           </h2>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-jni-100 max-w-2xl mx-auto">
             Tim ahli travel kami siap membantu Anda merencanakan perjalanan impian
           </p>
           <ConsultationButton />

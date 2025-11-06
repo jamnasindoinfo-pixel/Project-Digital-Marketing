@@ -17,7 +17,11 @@ import {
   Calendar,
   ArrowRight,
   Info,
-  Star
+  Star,
+  MessageCircle,
+  ClipboardList,
+  Send,
+  BarChart3
 } from 'lucide-react'
 import { SERVICES, CONTACT_INFO } from '@/lib/constants'
 import { createWhatsAppLink } from '@/lib/utils'
@@ -242,27 +246,82 @@ export function Services() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: 1, title: 'Konsultasi Awal', desc: 'Evaluasi kebutuhan dan persyaratan' },
-              { step: 2, title: 'Persiapan Dokumen', desc: 'Kumpulkan dan lengkapi semua dokumen' },
-              { step: 3, title: 'Proses Pengajuan', desc: 'Submit ke instansi terkait' },
-              { step: 4, title: 'Monitoring', desc: 'Track progres hingga selesai' }
-            ].map((item) => (
-              <motion.div
-                key={item.step}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.6 + item.step * 0.1 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-brand-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                  {item.step}
-                </div>
-                <h4 className="font-semibold text-lg mb-2">{item.title}</h4>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
-              </motion.div>
-            ))}
+          {/* Stepper Component */}
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Progress Line */}
+              <div className="absolute left-0 top-8 w-full h-0.5 bg-gray-200 rounded-full">
+                <div className="h-full bg-gradient-to-r from-jni-500 to-jni-600 rounded-full" style={{ width: '100%' }}></div>
+              </div>
+
+              {/* Steps */}
+              <div className="relative flex justify-between">
+                {[
+                  {
+                    step: 1,
+                    title: 'Konsultasi Awal',
+                    desc: 'Evaluasi kebutuhan dan persyaratan',
+                    icon: MessageCircle
+                  },
+                  {
+                    step: 2,
+                    title: 'Persiapan Dokumen',
+                    desc: 'Kumpulkan dan lengkapi semua dokumen',
+                    icon: ClipboardList
+                  },
+                  {
+                    step: 3,
+                    title: 'Proses Pengajuan',
+                    desc: 'Submit ke instansi terkait',
+                    icon: Send
+                  },
+                  {
+                    step: 4,
+                    title: 'Monitoring',
+                    desc: 'Track progres hingga selesai',
+                    icon: BarChart3
+                  }
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.step}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                    className="flex flex-col items-center text-center"
+                  >
+                    {/* Step Circle */}
+                    <div className="relative group">
+                      <div className="w-16 h-16 bg-gradient-to-r from-jni-500 to-jni-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 z-10">
+                        {item.step}
+                      </div>
+                      {/* Icon Badge */}
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-jni-500">
+                        <item.icon className="w-3 h-3 text-jni-600" />
+                      </div>
+                    </div>
+
+                    {/* Step Content */}
+                    <div className="mt-6 max-w-[120px]">
+                      <h4 className="font-semibold text-base mb-2 text-gray-900">{item.title}</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Additional Info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              className="mt-12 text-center"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-jni-50 text-jni-700 rounded-full text-sm font-medium">
+                <div className="w-2 h-2 bg-jni-500 rounded-full animate-pulse"></div>
+                Proses rata-rata 30-60 hari tergantung jenis layanan
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 

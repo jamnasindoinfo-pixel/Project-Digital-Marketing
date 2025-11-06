@@ -52,12 +52,12 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-brand-100 to-blue-100 flex items-center justify-center">
+          <div className="w-full h-full bg-gradient-to-br from-jni-100 to-jni-200 flex items-center justify-center">
             <div className="text-center p-4">
-              <div className="w-16 h-16 bg-brand-200 rounded-full mx-auto mb-2 flex items-center justify-center">
-                <span className="text-brand-600 text-2xl font-bold">T</span>
+              <div className="w-16 h-16 bg-jni-300 rounded-full mx-auto mb-2 flex items-center justify-center">
+                <span className="text-jni-700 text-2xl font-bold">T</span>
               </div>
-              <p className="text-brand-600 font-medium">Travel Indonesia</p>
+              <p className="text-jni-700 font-medium">Travel Indonesia</p>
             </div>
           </div>
         )}
@@ -65,7 +65,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         {/* Category Badge */}
         {post.category && (
           <div className="absolute top-4 left-4">
-            <span className="bg-brand-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <span className="bg-jni-600 text-white px-3 py-1 rounded-full text-sm font-medium">
               {post.category.name}
             </span>
           </div>
@@ -90,8 +90,8 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-brand-600 transition-colors">
-          <Link href={`/blog/${post.slug}`} className="hover:text-brand-600">
+        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-jni-600 transition-colors">
+          <Link href={`/blog/${post.slug}`} className="hover:text-jni-600">
             {post.title}
           </Link>
         </h3>
@@ -123,7 +123,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         {/* Read More Link */}
         <Link
           href={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-2 text-brand-600 font-medium hover:text-brand-700 transition-colors group"
+          className="inline-flex items-center gap-2 text-jni-600 font-medium hover:text-jni-700 transition-colors group"
         >
           Baca Selengkapnya
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
